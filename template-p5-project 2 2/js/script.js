@@ -9,26 +9,34 @@ let face = []
 
 let myVar = 0;
 let clickCounter = 0;
+let ale = [];
+let dle = 4;
+var gif;
 
 
 function preload() {
 
 
-face[0] = loadImage('assets/images/left eye.png');
-face[1] = loadImage('assets/images/right eye.png');
-face[2] = loadImage('assets/images/mouth.png');
+face[0] = loadImage('assets/images/left eye1.png');
+face[1] = loadImage('assets/images/right eye1.png');
+face[2] = loadImage('assets/images/mouth1.png');
 
-let appear = 2;
-let dissapear = 4;
+gif = createImg('assets/images/background.gif');
 
+frameRate(10);
 
 }
 
 
+//let sqSize = [100, 39, 18, 17]
+
 function setup() {
 
-createCanvas(1000, 1000);
-background(240,240,240);
+createCanvas(1080, 1920);
+background(200,200,200);
+
+
+
 
 
 }
@@ -42,37 +50,71 @@ function mousePressed(){
 
 }
 
+
+/*function draw(){
+
+  for( let i = 0; i < sqSize.length; i++){
+    fill(100,50);
+    drawSquare(sqSize[i],100);
+  }
+}
+function drawSquare(size, fColor){
+  rectMode(CENTER);
+  rect(mouseX+random(-10,10), mouseY + random(-10,10), size, size);
+}
+
+//  gif.position(1380, 32);
+  //gif.size(1080, 1920);
+//}
+
+function check(){
+  if(mouseX < width/2 && mouseY < height/2){
+      return true;
+  } else {
+    return false;
+  }
+}
+
+
+function keyPressed(){
+  sqSize.pop();
+}
+*/
 function draw() {
   print(frameCount);
+
+  var eyeLeft = [1,19,37];
+  var eyeRight = [7,25,43];
+  var mouth = [13,31,49];
+  var reset = [6,12,18,24,30,36,42,48,54];
+
+  if(eyeLeft.includes(frameCount)){
+      face[1].resize(339 * 0.5,409 * 0.5)
+      image(face[1],521,227);
+
+    }
+    if(eyeRight.includes(frameCount)){
+      face[0].resize(339 * 0.5,409 * 0.5)
+      image(face[0],96,337);
+
+    }
+    if(mouth.includes(frameCount)){
+      face[2].resize(669 * 0.5,299 * 0.5)
+      image(face[2],288,557);
+
+    }
+    if(reset.includes(frameCount)) {
+      background(200,200,200);
+    }
+
+
+}
+
+
 //  for(let i = 0; i < face.length; i++){
   //  image(face[i], i*200, 227, 339/2, 409/2); // (variable for the image, x, y, w, h)
     //}
 
-    if(frameCount % (appear * 20) == 0){
-        face[1].resize(339 * 0.5,409 * 0.5)
-        image(face[1],521,227);
-
-      }
-      else if(frameCount % (dissapear * 30) == 0) {
-        background('pink')
-      }
-
-      if(frameCount == 7){
-        face[0].resize(339 * 0.5,409 * 0.5)
-        image(face[0],96,337);
-
-      }
-      else if(frameCount == 12) {
-        background('pink')
-      }
-      if(frameCount == 13){
-        face[2].resize(669 * 0.5,299 * 0.5)
-        image(face[2],288,557);
-
-      }
-      else if(frameCount == 18) {
-        background('pink')
-      }
 //bullion use flag in set up, modulo function
 
   /* THIS IS WHEN IT IS DONE LOADING
@@ -85,63 +127,3 @@ function draw() {
     text('Done Loading', 15, 300);
   }
   */
-}
-
-
-
-
-
-
-
-
-
-
-/* function mousePressed(){
-  if(clickCounter < 50){
-    fill(random(255));
-    ellipse(mouseX, mouseY, 50, 50);
-  }
-  clickCounter++;
-  print(clickCounter);
-}
-
-/*
-let myVar = 0;
-function draw(){
- if(mouseIsPressed ) {
- fill(0);
- rect(random(width), random(height), 100, 100);
- if(myVar < 20 ) {
- background(255);
- }
- }
-}
-function mouse
-hiding background  */
-
-
-
-
-
-
-
-
-
-/* //IN CLASS
-if(mouseIsPressed || keyIsPressed && keyCode == 72){
-
-    image(leye, random(0,1000), random(0,1000));
-    //put in mouseX, mouseY for x and y to follow mouse
-  }
-  if(myVar < 100 ) {
-    fill(random(255));
-    ellipse(random(height), random(width), 100, 100);
-    myVar++;
-  } else {
-    noStroke();
-    fill(255,255,255);
-    rect(random(width), random(height), 100, 100);
-  }
-  // put print statements in else and if to see what is happening
-
-*/
